@@ -7,6 +7,17 @@ function Counter(element, value) {
     this.valueDOM = element.querySelector('.value')
 
     this.valueDOM.textContent = this.value
+
+
+    // Binding all function to the current Counter
+    this.increase = this.increase.bind(this)
+    this.decrease = this.decrease.bind(this)
+    this.reset = this.reset.bind(this)
+
+    // Adding event listeners to all buttons (to the current Counter)
+    this.increaseBtn.addEventListener('click', this.increase)
+    this.decreaseBtn.addEventListener('click', this.decrease)
+    this.resetBtn.addEventListener('click', this.reset)
 }
 
 function getElement(selection) {
@@ -41,14 +52,8 @@ Counter.prototype.reset = function () {
     this.valueDOM.textContent = this.value
 }
 
-
 const firstCounter  = new Counter(getElement('.first-counter'), 100)
 const secondCounter = new Counter(getElement('.second-counter'), 200)
 
-firstCounter.increase()
-firstCounter.increase()
-
-secondCounter.reset()
-secondCounter.decrease()
 
 
